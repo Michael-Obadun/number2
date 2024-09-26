@@ -15,7 +15,15 @@ class Post(models.Model):
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        ordering = ["-created_on"]
 
+    #def __str__(self):
+    #    return f"The title of this post is {self.title}"
+
+
+    def __str__(self):
+        return f"{self.title} | written by {self.author}"
 
 class Comment(models.Model):
     post = models.ForeignKey(
@@ -26,5 +34,6 @@ class Comment(models.Model):
     approved = models.BooleanField(default=False)
     created_on = models.DateTimeField(auto_now_add=True)
 
-
+    class Meta:
+        ordering = ["-created_on"]
 
